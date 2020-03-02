@@ -1,0 +1,9 @@
+{
+  "name": "stackmapper",
+  "version": "0.1.0",
+  "repository": "https://github.com/sfishel18/stackmapper.git",
+  "author": "Simon Fishel <simonf@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": ["site-frontend", "site-backend"]
+}
