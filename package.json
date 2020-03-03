@@ -5,5 +5,8 @@
   "author": "Simon Fishel <simonf@gmail.com>",
   "license": "MIT",
   "private": true,
-  "workspaces": ["site-frontend", "site-backend"]
+  "workspaces": ["site-frontend", "site-backend"],
+  "scripts": {
+    "start": "cd site-frontend && yarn webpack-dev-server --mode development"
+  }
 }
