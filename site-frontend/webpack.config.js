@@ -34,12 +34,17 @@ module.exports = {
     },
 
     devServer: {
+        port: 8081,
         hot: true,
     },
 
     plugins: [
         new HtmlWebpackPlugin({
           template: path.resolve(__dirname, 'index.html'),
+        }),
+        new webpack.EnvironmentPlugin({
+            API_URL: 'http://localhost:8080',
+            NODE_ENV: 'development',
         }),
         new webpack.HotModuleReplacementPlugin(),
     ],

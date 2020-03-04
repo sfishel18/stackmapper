@@ -1,0 +1,15 @@
+{
+  "name": "site-backend",
+  "version": "0.1.0",
+  "license": "MIT",
+  "devDependencies": {
+    "@google-cloud/functions-framework": "^1.4.0",
+    "nodemon": "^2.0.2"
+  },
+  "scripts": {
+    "start": "nodemon node_modules/.bin/functions-framework --source ./index.js --target transform"
+  },
+  "dependencies": {
+    "source-map": "^0.7.3"
+  }
+}

@@ -1,6 +1,7 @@
 import * as React from "react";
 import App from '../components/App';
+import { transformStackTrace } from './api';
 
-const state = {}
+const onTransform = (stackTrace: string, sourceMap: string) => transformStackTrace(stackTrace, sourceMap);
 
-export default () => <App />;
+export default () => <App onTransform={onTransform} />;

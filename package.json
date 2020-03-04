@@ -5,8 +5,16 @@
   "author": "Simon Fishel <simonf@gmail.com>",
   "license": "MIT",
   "private": true,
-  "workspaces": ["site-frontend", "site-backend"],
+  "workspaces": [
+    "site-frontend",
+    "site-backend"
+  ],
   "scripts": {
-    "start": "cd site-frontend && yarn webpack-dev-server --mode development"
+    "start": "concurrently \"yarn start:site-frontend\" \"yarn start:site-backend\"",
+    "start:site-frontend": "cd site-frontend && yarn start",
+    "start:site-backend": "cd site-backend && yarn start"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0"
   }
 }

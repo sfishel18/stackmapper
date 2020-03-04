@@ -21,5 +21,8 @@
     "react-dom": "^16.13.0",
     "reakit": "^1.0.0-beta.16",
     "styled-components": "^5.0.1"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --mode development"
   }
 }

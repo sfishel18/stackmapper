@@ -73,12 +73,15 @@ const StackTraceRow = styled(Row)`
 
 const ButtonRow = styled(Row)``
 
-export interface AppProps {}
+export interface AppProps {
+    onTransform: (stackTrace: string, sourceMap: string) => void,
+}
 
-export default () => {
+export default (props: AppProps) => {
     const [sourceMapInputType, setSourceMapInputType] = React.useState('URL');
     const [sourceMapUrl, setSourceMapUrl] = React.useState('');
-    const fileInputRef = React.useRef(null)
+    const [stackTrace, setStrackTrace] = React.useState('');
+    const fileInputRef = React.useRef(null);
     return (
         <StyledGrommet theme={theme}>
             <GlobalStyle />
@@ -107,11 +110,11 @@ export default () => {
                     {sourceMapInputType === 'File' && <input type="file" ref={fileInputRef} />}
                 </SourceMapRow>
                 <StackTraceRow>
-                    <TextArea placeholder="Paste stack trace here" />
+                    <TextArea placeholder="Paste stack trace here" value={stackTrace} onChange={e => setStrackTrace(e.target.value)} />
                     <TextArea disabled placeholder="Mapped stack trace will appear here" />
                 </StackTraceRow>
                 <ButtonRow>
-                    <Button label="Transform" />
+                    <Button label="Transform" onClick={() => props.onTransform(stackTrace, sourceMapUrl)} />
                 </ButtonRow>
             </BodySection>
         </StyledGrommet>
