@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled, { createGlobalStyle } from 'styled-components';
 import { Button, Grommet, Select, TextArea, TextInput } from 'grommet';
+import theme from "./theme";
 
 const GlobalStyle = createGlobalStyle`
     html {
@@ -34,7 +35,8 @@ const Section = styled.div`
 `;
 
 const HeaderSection = styled(Section)`
-    background-color: #f00;
+    background-color: ${theme.global.colors.brand};
+    color: ${theme.global.colors.white};
 `;
 
 const BodySection = styled(Section)`
@@ -78,7 +80,7 @@ export default () => {
     const [sourceMapUrl, setSourceMapUrl] = React.useState('');
     const fileInputRef = React.useRef(null)
     return (
-        <StyledGrommet plain>
+        <StyledGrommet theme={theme}>
             <GlobalStyle />
             <HeaderSection>
                 <div>
