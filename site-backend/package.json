@@ -10,6 +10,8 @@
     "start": "nodemon node_modules/.bin/functions-framework --source ./index.js --target transform"
   },
   "dependencies": {
-    "source-map": "^0.7.3"
+    "axios": "^0.19.2",
+    "source-map": "^0.7.3",
+    "url-regex": "^5.0.0"
   }
 }
