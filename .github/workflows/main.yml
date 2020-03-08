@@ -30,6 +30,7 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     container: google/cloud-sdk:alpine
+    needs: Build
 
     steps:
       - uses: actions/checkout@v1
