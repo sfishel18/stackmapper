@@ -4,6 +4,23 @@ on: [push]
 
 jobs:
 
+  Build:
+    runs-on: ubuntu-latest
+    container: node:10-alpine
+
+    steps: 
+      - uses: actions/checkout@v1
+
+      - name: Install Dependencies
+        run: yarn Install
+
+      - name: Build Site Frontend
+        env: 
+          API_URL: https://us-central1-stackmapper.cloudfunctions.net
+        run: |
+          cd site-frontent
+          yarn ci:build
+
   Deploy:
     runs-on: ubuntu-latest
     container: google/cloud-sdk:alpine

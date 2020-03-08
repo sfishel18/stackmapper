@@ -23,6 +23,7 @@
     "styled-components": "^5.0.1"
   },
   "scripts": {
+    "ci:build": "NODE_ENV=production webpack --mode production",
     "start": "webpack-dev-server --mode development"
   }
 }
