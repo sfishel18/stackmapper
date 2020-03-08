@@ -48,7 +48,7 @@ jobs:
           name: frontend-artifact
 
       - name: Deploy Site Frontend
-        run: ls -lah frontend-artifact
+        run: gsutil rsync -d -r frontend-artifact gs://www.stackmapper.com   
 
       - name: Deploy Site Backend
         run: |
