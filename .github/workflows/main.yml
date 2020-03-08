@@ -46,7 +46,7 @@ jobs:
         with:
           name: frontend-artifact
 
-      name: Deploy Site Frontend
+      - name: Deploy Site Frontend
         run: ls -lah frontend-artifact
 
       - name: Deploy Site Backend
