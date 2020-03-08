@@ -18,7 +18,7 @@ jobs:
         env: 
           API_URL: https://us-central1-stackmapper.cloudfunctions.net
         run: |
-          cd site-frontent
+          cd site-frontend
           yarn ci:build
 
       - name: Upload Site Frontend Artifacts
