@@ -48,7 +48,10 @@ jobs:
           name: frontend-artifact
 
       - name: Deploy Site Frontend
-        run: gsutil rsync -d -r frontend-artifact gs://www.stackmapper.com   
+        run: |
+          cp frontend-artifact/* site-frontend/cloud-function
+          cd site-frontend/cloud-function
+          gcloud functions deploy static --project stackmapper --runtime nodejs10 --entry-point static --trigger-http --allow-unauthenticated
 
       - name: Deploy Site Backend
         run: |
