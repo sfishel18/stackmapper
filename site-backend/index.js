@@ -4,7 +4,7 @@ const { parseStackTrace, transformFrame, stringifyStackTrace } = require('./util
 
 exports.transform = async (req, res) => {
     res.set({
-        'Access-Control-Allow-Origin': 'http://www.stackmapper.com',
+        'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type'
     });
     if (req.method === "HEAD" || req.method === 'OPTIONS') {

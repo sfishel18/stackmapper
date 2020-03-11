@@ -1,6 +1,8 @@
 import * as React from "react";
 import styled, { createGlobalStyle } from 'styled-components';
 import { Button, Grommet, Select, TextArea, TextInput } from 'grommet';
+import { DualRing } from 'react-awesome-spinners';
+import ResponseTextArea from './ResponseTextArea';
 import theme from "./theme";
 
 const GlobalStyle = createGlobalStyle`
@@ -71,17 +73,47 @@ const StackTraceRow = styled(Row)`
     }
 `;
 
+const TextAreaWrapper = styled.div`
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+`;
+
+const LoadingWrapper = styled.div`
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: ${theme.global.colors['light-3']}
+`;
+
 const ButtonRow = styled(Row)``
 
 export interface AppProps {
-    onTransform: (stackTrace: string, sourceMap: string) => void,
+    onTransform: (stackTrace: string, sourceMap: string) => Promise<any>,
 }
 
 export default (props: AppProps) => {
     const [sourceMapInputType, setSourceMapInputType] = React.useState('URL');
     const [sourceMapUrl, setSourceMapUrl] = React.useState('');
     const [stackTrace, setStrackTrace] = React.useState('');
+    const [response, setResponse] = React.useState('');
+    const [isLoading, setIsLoading] = React.useState(false);
+    const [error, setError] = React.useState(null);
     const fileInputRef = React.useRef(null);
+
+    const handleOnTransform = () => {
+        setIsLoading(true);
+        props.onTransform(stackTrace, sourceMapUrl)
+            .then(({ trace }) => setResponse(trace))
+            .catch(e => setError(e.message))
+            .finally(() => setIsLoading(false));
+    }
+
     return (
         <StyledGrommet theme={theme}>
             <GlobalStyle />
@@ -110,11 +142,16 @@ export default (props: AppProps) => {
                     {sourceMapInputType === 'File' && <input type="file" ref={fileInputRef} />}
                 </SourceMapRow>
                 <StackTraceRow>
-                    <TextArea placeholder="Paste stack trace here" value={stackTrace} onChange={e => setStrackTrace(e.target.value)} />
-                    <TextArea disabled placeholder="Mapped stack trace will appear here" />
+                    <TextAreaWrapper>
+                        <TextArea placeholder="Paste stack trace here" value={stackTrace} onChange={e => setStrackTrace(e.target.value)} />
+                    </TextAreaWrapper>
+                    <TextAreaWrapper>
+                        {isLoading && <LoadingWrapper><DualRing color={theme.global.colors.brand} /></LoadingWrapper>}
+                        <ResponseTextArea error={error} disabled placeholder="Mapped stack trace will appear here" value={response} />
+                    </TextAreaWrapper>
                 </StackTraceRow>
                 <ButtonRow>
-                    <Button label="Transform" onClick={() => props.onTransform(stackTrace, sourceMapUrl)} />
+                    <Button label="Transform" onClick={handleOnTransform} />
                 </ButtonRow>
             </BodySection>
         </StyledGrommet>
