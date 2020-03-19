@@ -108,7 +108,8 @@ export default (props: AppProps) => {
 
     const handleOnTransform = () => {
         setIsLoading(true);
-        props.onTransform(stackTrace, sourceMapUrl)
+        const sourceMapContent = sourceMapInputType === 'URL' ? sourceMapUrl : fileInputRef.current.files[0];
+        props.onTransform(stackTrace, sourceMapContent)
             .then(({ trace }) => setResponse(trace))
             .catch(e => setError(e.message))
             .finally(() => setIsLoading(false));

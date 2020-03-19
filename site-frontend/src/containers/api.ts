@@ -13,11 +13,20 @@ const handleErrors = response => {
     return response;
 }
 
-export const transformStackTrace = (stackTrace: string, sourceMap: string) => 
-    fetch(`${API_URL}/transform`, { 
-        body: JSON.stringify({ stackTrace, sourceMap }),
-        headers: { 'Content-Type': 'application/json' },
+export const transformStackTrace = (stackTrace: string, sourceMap: string | File) => {
+    let body;
+    const sourceMapIsFile = sourceMap instanceof File;
+    if (sourceMapIsFile) {
+        body = new FormData();
+        body.append('sourceMap', sourceMap)
+    } else {
+        body = JSON.stringify({ stackTrace, sourceMap });
+    }
+    return fetch(`${API_URL}/transform`, { 
+        body,
+        headers: {...(sourceMapIsFile ? {} : { 'Content-Type': 'application/json' }) },
         method: 'POST', 
     })
     .then(handleErrors)
-    .then(response => response.json());
+    .then(response => response.json())
+};
