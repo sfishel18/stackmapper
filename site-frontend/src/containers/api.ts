@@ -1,6 +1,20 @@
 const API_URL = process.env.API_URL;
 
-const handleErrors = response => {
+interface ResponseBody<T> {
+    ok: boolean,
+    statusText: string,
+    json: () => Promise<T>
+}
+
+interface ErrorResponseBody extends ResponseBody<{ message: string }> {
+    ok: false,
+}
+
+interface SuccessResponseBody<T> extends ResponseBody<T> {
+    ok: true,
+}
+
+function handleErrors<T>(response: SuccessResponseBody<T> | ErrorResponseBody) {
     if (!response.ok) {
         let errorMessage = response.statusText;
         try {
@@ -11,6 +25,10 @@ const handleErrors = response => {
         throw Error(errorMessage);
     }
     return response;
+}
+
+interface TransformStackTraceResponse {
+    trace: string,
 }
 
 export const transformStackTrace = (stackTrace: string, sourceMap: string | File) => {
@@ -27,6 +45,6 @@ export const transformStackTrace = (stackTrace: string, sourceMap: string | File
         headers: {...(sourceMapIsFile ? {} : { 'Content-Type': 'application/json' }) },
         method: 'POST', 
     })
-    .then(handleErrors)
+    .then(response => handleErrors<TransformStackTraceResponse>(response))
     .then(response => response.json())
 };

@@ -91,10 +91,12 @@ const LoadingWrapper = styled.div`
     background-color: ${theme.global.colors['light-3']}
 `;
 
-const ButtonRow = styled(Row)``
+const ButtonRow = styled(Row)``;
+
+type SourceMap = string | File;
 
 export interface AppProps {
-    onTransform: (stackTrace: string, sourceMap: string) => Promise<any>,
+    onTransform: (stackTrace: string, sourceMap: SourceMap) => Promise<{ trace: string }>,
 }
 
 export default (props: AppProps) => {
@@ -104,11 +106,20 @@ export default (props: AppProps) => {
     const [response, setResponse] = React.useState('');
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState(null);
-    const fileInputRef = React.useRef(null);
+    const fileInputRef = React.useRef<HTMLInputElement>(null);
 
     const handleOnTransform = () => {
         setIsLoading(true);
-        const sourceMapContent = sourceMapInputType === 'URL' ? sourceMapUrl : fileInputRef.current.files[0];
+        let sourceMapContent : SourceMap = '';
+        if (sourceMapInputType === 'URL') {
+            sourceMapContent = sourceMapUrl;
+        } else {
+            const fileInput = fileInputRef.current;
+            if (fileInput && fileInput.files) {
+                sourceMapContent = fileInput.files[0];
+            }
+            
+        }
         props.onTransform(stackTrace, sourceMapContent)
             .then(({ trace }) => setResponse(trace))
             .catch(e => setError(e.message))
