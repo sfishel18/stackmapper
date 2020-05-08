@@ -96,20 +96,38 @@ const ButtonRow = styled(Row)``;
 type SourceMap = string | File;
 
 export interface AppProps {
-    onTransform: (stackTrace: string, sourceMap: SourceMap) => Promise<{ trace: string }>,
+    onTransform: (stackTrace: string, sourceMap: SourceMap) => void,
+    transformedResource: any
+}
+
+class ErrorBoundary extends React.Component {
+  state = { hasError: false, error: null };
+
+  static getDerivedStateFromError(error: Error) {
+    return {
+      hasError: true,
+      error
+    };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <ResponseTextArea 
+        disabled 
+        error={this.state.error}
+      />
+    }
+    return this.props.children;
+  }
 }
 
 export default (props: AppProps) => {
     const [sourceMapInputType, setSourceMapInputType] = React.useState('URL');
     const [sourceMapUrl, setSourceMapUrl] = React.useState('');
     const [stackTrace, setStrackTrace] = React.useState('');
-    const [response, setResponse] = React.useState('');
-    const [isLoading, setIsLoading] = React.useState(false);
-    const [error, setError] = React.useState(null);
     const fileInputRef = React.useRef<HTMLInputElement>(null);
 
     const handleOnTransform = () => {
-        setIsLoading(true);
         let sourceMapContent : SourceMap = '';
         if (sourceMapInputType === 'URL') {
             sourceMapContent = sourceMapUrl;
@@ -120,10 +138,7 @@ export default (props: AppProps) => {
             }
             
         }
-        props.onTransform(stackTrace, sourceMapContent)
-            .then(({ trace }) => setResponse(trace))
-            .catch(e => setError(e.message))
-            .finally(() => setIsLoading(false));
+        props.onTransform(stackTrace, sourceMapContent);
     }
 
     return (
@@ -158,8 +173,15 @@ export default (props: AppProps) => {
                         <TextArea placeholder="Paste stack trace here" value={stackTrace} onChange={e => setStrackTrace(e.target.value)} />
                     </TextAreaWrapper>
                     <TextAreaWrapper>
-                        {isLoading && <LoadingWrapper><DualRing color={theme.global.colors.brand} /></LoadingWrapper>}
-                        <ResponseTextArea error={error} disabled placeholder="Mapped stack trace will appear here" value={response} />
+                        <React.Suspense fallback={<LoadingWrapper><DualRing color={theme.global.colors.brand} /></LoadingWrapper>}>
+                            <ErrorBoundary>
+                                <ResponseTextArea 
+                                    disabled 
+                                    placeholder="Mapped stack trace will appear here" 
+                                    resource={props.transformedResource} 
+                                />
+                            </ErrorBoundary>
+                        </React.Suspense>
                     </TextAreaWrapper>
                 </StackTraceRow>
                 <ButtonRow>

@@ -1,7 +1,12 @@
 import * as React from "react";
 import App from '../components/App';
-import { transformStackTrace } from './api';
+import { fetchTransformedStackTrace, TransformStackTraceResponse } from './api';
+import { SuspenseResource } from "../types";
 
-const onTransform = (stackTrace: string, sourceMap: string | File) => transformStackTrace(stackTrace, sourceMap);
-
-export default () => <App onTransform={onTransform} />;
+export default () => {
+    const [transformedResource, setTransformedResource] = React.useState<SuspenseResource<TransformStackTraceResponse> | null>(null);
+    const onTransform = React.useCallback((stackTrace: string, sourceMap: string | File) => {
+        setTransformedResource(fetchTransformedStackTrace(stackTrace, sourceMap));
+    }, [setTransformedResource, fetchTransformedStackTrace]);
+    return <App onTransform={onTransform} transformedResource={transformedResource} /> 
+};

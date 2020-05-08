@@ -1,3 +1,34 @@
+import { SuspenseResource } from "../types";
+
+function wrapPromise<T>(promise: Promise<T>): SuspenseResource<T> {
+  let status = 'pending'
+  let response: T;
+
+  const suspender = promise.then(
+    (res) => {
+      status = 'success';
+      response = res;
+    },
+    (err) => {
+      status = 'error';
+      response = err;
+    },
+  );
+
+  const read = () => {
+    switch (status) {
+      case 'pending':
+        throw suspender;
+      case 'error':
+        throw response;
+      default:
+        return response;
+    }
+  };
+
+  return { read };
+}
+  
 const API_URL = process.env.API_URL;
 
 interface ResponseBody<T> {
@@ -27,11 +58,11 @@ function handleErrors<T>(response: SuccessResponseBody<T> | ErrorResponseBody) {
     return response;
 }
 
-interface TransformStackTraceResponse {
-    trace: string,
+export interface TransformStackTraceResponse {
+  trace: string,
 }
 
-export const transformStackTrace = (stackTrace: string, sourceMap: string | File) => {
+const transformStackTrace = (stackTrace: string, sourceMap: string | File) => {
     let body;
     const sourceMapIsFile = sourceMap instanceof File;
     if (sourceMapIsFile) {
@@ -48,3 +79,5 @@ export const transformStackTrace = (stackTrace: string, sourceMap: string | File
     .then(response => handleErrors<TransformStackTraceResponse>(response))
     .then(response => response.json())
 };
+
+export const fetchTransformedStackTrace = (stackTrace: string, sourceMap: string | File) => wrapPromise(transformStackTrace(stackTrace, sourceMap))

@@ -2,14 +2,17 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { TextArea, TextAreaProps } from 'grommet';
 import theme from './theme';
+import { SuspenseResource } from '../types';
 
 export interface ResponseTextAreaProps extends TextAreaProps {
     disabled: boolean,
-    error: string | null,
+    error?: string | null,
+    resource?: SuspenseResource<{ trace: string }>
 }
 
 const ResponseTextArea = (props: ResponseTextAreaProps) => {
-    const { error, value, ...restProps } = props;
+    const { error = null, resource, ...restProps } = props;
+    const value = resource ? resource.read().trace : '';
     return <TextArea {...restProps} value={error || value} />
 }
 
