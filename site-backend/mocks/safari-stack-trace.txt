@@ -1,0 +1,36 @@
+-- from console --
+[Error] TypeError: _.foo is not a function. (In '_.foo()', '_.foo' is undefined)
+	(anonymous function) (main.2a0e4dab69ca6d92be72.js:69:1836)
+	yd (vendors~main.2a0e4dab69ca6d92be72.js:35:136884)
+	(anonymous function) (vendors~main.2a0e4dab69ca6d92be72.js:35:176454)
+	g (vendors~main.2a0e4dab69ca6d92be72.js:22:2132)
+	dispatchEvent
+	u (vendors~main.2a0e4dab69ca6d92be72.js:22:2460)
+	v (vendors~main.2a0e4dab69ca6d92be72.js:22:3353)
+	wm (vendors~main.2a0e4dab69ca6d92be72.js:35:215166)
+	tm (vendors~main.2a0e4dab69ca6d92be72.js:35:208843)
+	em (vendors~main.2a0e4dab69ca6d92be72.js:35:208749)
+	(anonymous function) (vendors~main.2a0e4dab69ca6d92be72.js:35:204878)
+	Fh (vendors~main.2a0e4dab69ca6d92be72.js:35:204958)
+	Fh
+	J (vendors~main.2a0e4dab69ca6d92be72.js:43:4343)
+	Q (vendors~main.2a0e4dab69ca6d92be72.js:43:3848)
+	(anonymous function) (vendors~main.2a0e4dab69ca6d92be72.js:43:1818)
+
+-- from e.stack --
+http://localhost:8081/main.2a0e4dab69ca6d92be72.js:69:1795
+yd@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:136883
+http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:176453
+g@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:22:2131
+dispatchEvent@[native code]
+u@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:22:2459
+v@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:22:3352
+wm@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:215165
+tm@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:208842
+em@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:208748
+http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:204877
+Fh@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:204957
+Fh@[native code]
+J@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:43:4342
+Q@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:43:3847
+http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:43:1817

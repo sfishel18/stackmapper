@@ -1,0 +1,25 @@
+-- from console --
+TypeError: Object doesn't support property or method 'foo'
+   at t.default (http://10.0.2.2:8081/main.2a0e4dab69ca6d92be72.js:69:408)
+   at yd (http://10.0.2.2:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:136462)
+   at Anonymous function (http://10.0.2.2:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:175964)
+   at hf (http://10.0.2.2:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:175554)
+   at wm (http://10.0.2.2:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:214614)
+   at tm (http://10.0.2.2:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:208374)
+   at Zh (http://10.0.2.2:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:208288)
+   at Jh (http://10.0.2.2:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:208059)
+   at Fh (http://10.0.2.2:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:204559)
+   at J (http://10.0.2.2:8081/vendors~main.2a0e4dab69ca6d92be72.js:43:4074)
+
+-- from e.stack --
+TypeError: Object doesn't support property or method 'foo'
+   at t.default (http://10.0.2.2:8081/main.2a0e4dab69ca6d92be72.js:69:408)
+   at yd (http://10.0.2.2:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:136462)
+   at Anonymous function (http://10.0.2.2:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:175964)
+   at hf (http://10.0.2.2:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:175554)
+   at wm (http://10.0.2.2:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:214614)
+   at tm (http://10.0.2.2:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:208374)
+   at em (http://10.0.2.2:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:208332)
+   at Anonymous function (http://10.0.2.2:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:204461)
+   at Fh (http://10.0.2.2:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:204357)
+   at J (http://10.0.2.2:8081/vendors~main.2a0e4dab69ca6d92be72.js:43:4074)

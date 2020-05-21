@@ -1,0 +1,35 @@
+-- from dev tools --
+TypeError: _.foo is not a function2 main.ad9910bbb1889fab8e35.js:69:406
+    default http://localhost:8081/main.ad9910bbb1889fab8e35.js:69
+    yd http://localhost:8081/vendors~main.ad9910bbb1889fab8e35.js:35
+    hf http://localhost:8081/vendors~main.ad9910bbb1889fab8e35.js:35
+    hf http://localhost:8081/vendors~main.ad9910bbb1889fab8e35.js:35
+    g http://localhost:8081/vendors~main.ad9910bbb1889fab8e35.js:22
+    u http://localhost:8081/vendors~main.ad9910bbb1889fab8e35.js:22
+    v http://localhost:8081/vendors~main.ad9910bbb1889fab8e35.js:22
+    wm http://localhost:8081/vendors~main.ad9910bbb1889fab8e35.js:35
+    tm http://localhost:8081/vendors~main.ad9910bbb1889fab8e35.js:35
+    Zh http://localhost:8081/vendors~main.ad9910bbb1889fab8e35.js:35
+    Jh http://localhost:8081/vendors~main.ad9910bbb1889fab8e35.js:35
+    Fh http://localhost:8081/vendors~main.ad9910bbb1889fab8e35.js:35
+    Fh self-hosted:891
+    J http://localhost:8081/vendors~main.ad9910bbb1889fab8e35.js:43
+    Q http://localhost:8081/vendors~main.ad9910bbb1889fab8e35.js:43
+    onmessage http://localhost:8081/vendors~main.ad9910bbb1889fab8e35.js:43
+
+-- from e.stack --
+89/t.default@http://localhost:8081/main.2a0e4dab69ca6d92be72.js:69:410
+yd@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:136469
+hf/<@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:176037
+hf@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:177412
+g@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:22:1865
+u@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:22:2185
+v@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:22:3086
+wm@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:214750
+tm@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:208426
+Zh@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:208290
+Jh@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:208059
+Fh@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:35:204572
+J@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:43:4081
+Q@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:43:3585
+T.port1.onmessage@http://localhost:8081/vendors~main.2a0e4dab69ca6d92be72.js:43:1556

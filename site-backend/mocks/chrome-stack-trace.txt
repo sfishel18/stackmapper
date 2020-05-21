@@ -1,0 +1,25 @@
+-- from dev tools --
+Uncaught TypeError: _.foo is not a function
+    at t.default (main.c67895f2d3af99272989.js:69)
+    at yd (vendors~main.c67895f2d3af99272989.js:35)
+    at vendors~main.c67895f2d3af99272989.js:35
+    at hf (vendors~main.c67895f2d3af99272989.js:35)
+    at HTMLUnknownElement.g (vendors~main.c67895f2d3af99272989.js:22)
+    at Object.u (vendors~main.c67895f2d3af99272989.js:22)
+    at v (vendors~main.c67895f2d3af99272989.js:22)
+    at wm (vendors~main.c67895f2d3af99272989.js:35)
+    at tm (vendors~main.c67895f2d3af99272989.js:35)
+    at em (vendors~main.c67895f2d3af99272989.js:35)
+
+-- from e.stack --
+TypeError: _.foo is not a function
+    at t.default (main.380bee455a8715fdfbbb.js:69)
+    at yd (vendors~main.380bee455a8715fdfbbb.js:35)
+    at vendors~main.380bee455a8715fdfbbb.js:35
+    at hf (vendors~main.380bee455a8715fdfbbb.js:35)
+    at wm (vendors~main.380bee455a8715fdfbbb.js:35)
+    at tm (vendors~main.380bee455a8715fdfbbb.js:35)
+    at em (vendors~main.380bee455a8715fdfbbb.js:35)
+    at vendors~main.380bee455a8715fdfbbb.js:35
+    at Fh (vendors~main.380bee455a8715fdfbbb.js:35)
+    at J (vendors~main.380bee455a8715fdfbbb.js:43)
