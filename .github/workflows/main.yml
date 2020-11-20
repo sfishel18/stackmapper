@@ -44,10 +44,10 @@ jobs:
           path: site-frontend/build
 
 
-  Deploy:
+  Deploy-Frontend:
     runs-on: ubuntu-latest
     container: google/cloud-sdk:alpine
-    needs: Build
+    needs: Build-Frontend
 
     steps:
       - uses: actions/checkout@v1
