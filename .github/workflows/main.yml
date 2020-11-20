@@ -4,11 +4,11 @@ on: [push]
 
 jobs:
 
-  Build:
+  Build-Backend:
     runs-on: ubuntu-latest
-    container: node:10-alpine
+    container: docker
 
-    steps: 
+    steps:
       - uses: actions/checkout@v1
 
       - name: Build and Push Backend Image
@@ -19,6 +19,13 @@ jobs:
           cd site-backend
           docker build . -t gcr.io/stackmapper/backend
           docker push gcr.io/stackmapper/backend
+
+  Build-Frontend:
+    runs-on: ubuntu-latest
+    container: node:10-alpine
+
+    steps: 
+      - uses: actions/checkout@v1
 
       - name: Install Dependencies
         run: yarn install
@@ -35,6 +42,7 @@ jobs:
         with:
           name: frontend-artifact
           path: site-frontend/build
+
 
   Deploy:
     runs-on: ubuntu-latest
